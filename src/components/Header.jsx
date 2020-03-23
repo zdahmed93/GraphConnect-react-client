@@ -41,9 +41,9 @@ export default function ButtonAppBar() {
           <Button color="inherit" component={Link} to="/">Home</Button>
           <Button color="inherit" component={Link} to="/login">Login</Button>
           <Button color="inherit" component={Link} to="/register">Register</Button>
-          <Brightness2TwoToneIcon />
-          <Switch onChange={toggleTheme} />
           <WbSunnyTwoToneIcon />
+          <Switch onChange={toggleTheme} />
+          <Brightness2TwoToneIcon />
         </Toolbar>
       </AppBar>
     </div>

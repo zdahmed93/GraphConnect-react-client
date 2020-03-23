@@ -14,12 +14,12 @@ function App() {
   return (
     <ThemeContextProvider>
       <Router>
-        <Paper style={{height: '100vh'}} >
+        <Paper style={{height: '100%'}} >
         <Grid container direction="column">
           <Grid item>
             <Header />
           </Grid>
-          <Grid item>
+          <Grid container item style={{marginTop: 50}}>
             <Switch>
               <Route exact path="/" component={Home} />
               <Route path="/login" component={Login} />

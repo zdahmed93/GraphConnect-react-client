@@ -3,7 +3,7 @@ import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 
 export const ThemeContext = createContext();
 export default (props) => {
-  const [themePaletteType, setThemePaletteType] = useState('dark')
+  const [themePaletteType, setThemePaletteType] = useState('light')
   const theme = createMuiTheme({
       palette: {
         primary: {
