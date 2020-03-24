@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,6 +12,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks'
+import { AuthContext } from '../contexts/auth';
 
 
 function Copyright() {
@@ -44,6 +45,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Login(props) {
+    const context = useContext(AuthContext)
     const classes = useStyles();
     const [values, setValues] = useState({
         usernameOrEmail: '',
@@ -65,6 +67,8 @@ export default function Login(props) {
     const [addUser, { loading }] = useMutation(LOGIN_MUTATION, {
         update(proxy, result) {
             console.log('result: ', result.data.login)
+            // localStorage.setItem('jwtToken', result.data.login.token)
+            context.login(result.data.login)
             props.history.push('/')
         },
         onError(error) {
@@ -162,6 +166,7 @@ mutation RegisterNewUser(
             lastName
             id
             email
+            username
             birthDate
             createdAt
     }

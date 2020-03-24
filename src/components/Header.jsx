@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -9,9 +9,10 @@ import MenuIcon from '@material-ui/icons/Menu';
 import WbSunnyTwoToneIcon from '@material-ui/icons/WbSunnyTwoTone';
 import Brightness2TwoToneIcon from '@material-ui/icons/Brightness2TwoTone';
 import Switch from '@material-ui/core/Switch';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
-import {ThemeContext} from '../material-ui/ThemeProvider'
+import { ThemeContext } from '../material-ui/ThemeProvider'
+import { AuthContext } from '../contexts/auth'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -23,11 +24,15 @@ const useStyles = makeStyles(theme => ({
   title: {
     flexGrow: 1,
   },
+  username: {
+    marginRight: 10
+  }
 }));
 
 export default function ButtonAppBar() {
   const classes = useStyles();
-  const {toggleTheme} = useContext(ThemeContext)
+  const { toggleTheme } = useContext(ThemeContext)
+  const { user, logout } = useContext(AuthContext)
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -39,8 +44,19 @@ export default function ButtonAppBar() {
             GraphConnect
           </Typography>
           <Button color="inherit" component={Link} to="/">Home</Button>
-          <Button color="inherit" component={Link} to="/login">Login</Button>
-          <Button color="inherit" component={Link} to="/register">Register</Button>
+          {
+            user ? (
+              <>
+                <Button color="inherit" onClick={() => logout()}>Logout</Button>
+                <Typography color="secondary" className={classes.username}>{user.username}</Typography>
+              </>
+            ) : (
+              <>
+                <Button color="inherit" component={Link} to="/login">Login</Button>
+                <Button color="inherit" component={Link} to="/register">Register</Button>
+              </>
+            )
+          }
           <WbSunnyTwoToneIcon />
           <Switch onChange={toggleTheme} />
           <Brightness2TwoToneIcon />

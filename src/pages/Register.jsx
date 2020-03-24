@@ -251,6 +251,7 @@ mutation RegisterNewUser(
             firstName
             lastName
             id
+            username
             email
             birthDate
             createdAt

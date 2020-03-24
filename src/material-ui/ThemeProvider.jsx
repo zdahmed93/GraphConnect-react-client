@@ -10,7 +10,7 @@ export default (props) => {
           main: '#880e4f'
         },
         secondary: {
-          main: '#0d47a1'
+          main: '#2196f3'
         },
         type: themePaletteType
       }

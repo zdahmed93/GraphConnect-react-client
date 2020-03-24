@@ -9,26 +9,29 @@ import {Paper} from '@material-ui/core'
 
 import ThemeContextProvider from './material-ui/ThemeProvider'
 import Header from './components/Header'
+import {AuthProvider} from './contexts/auth'
 
 function App() {
   return (
     <ThemeContextProvider>
-      <Router>
-        <Paper style={{height: '100%'}} >
-        <Grid container direction="column">
-          <Grid item>
-            <Header />
+      <AuthProvider>
+        <Router>
+          <Paper style={{height: '100%'}} >
+          <Grid container direction="column">
+            <Grid item>
+              <Header />
+            </Grid>
+            <Grid container item style={{marginTop: 50}}>
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route path="/login" component={Login} />
+                <Route path="/register" component={Register} />
+              </Switch>
+            </Grid>
           </Grid>
-          <Grid container item style={{marginTop: 50}}>
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route path="/login" component={Login} />
-              <Route path="/register" component={Register} />
-            </Switch>
-          </Grid>
-        </Grid>
-        </Paper>
-      </Router>
+          </Paper>
+        </Router>
+      </AuthProvider>
     </ThemeContextProvider>
   );
 }
