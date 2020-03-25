@@ -3,6 +3,7 @@ import gql from 'graphql-tag'
 import { useQuery } from '@apollo/react-hooks'
 import { Grid } from '@material-ui/core'
 import Card from '../components/Card'
+import PostForm from '../components/PostForm'
 
 export default function Home() {
     const { data, loading, error } = useQuery(POSTS_QUERY)
@@ -10,6 +11,9 @@ export default function Home() {
         <>
             <Grid item xs={false} sm={1} />
             <Grid item container xs={12} sm={10} spacing={2} alignItems="center" justify="center" alignContent='center'>
+                <Grid item xs={10}>
+                  <PostForm />
+                </Grid>
                 {data && data.posts && data.posts.map(post => (
                     <Grid key={post.id} item sm={6} align="center">
                         <Card post={post} />
