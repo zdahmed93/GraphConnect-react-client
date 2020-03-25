@@ -10,6 +10,7 @@ import {Paper} from '@material-ui/core'
 import ThemeContextProvider from './material-ui/ThemeProvider'
 import Header from './components/Header'
 import {AuthProvider} from './contexts/auth'
+import PublicOnlyRoute from './components/PublicOnlyRoute';
 
 function App() {
   return (
@@ -24,8 +25,8 @@ function App() {
             <Grid container item style={{marginTop: 50}}>
               <Switch>
                 <Route exact path="/" component={Home} />
-                <Route path="/login" component={Login} />
-                <Route path="/register" component={Register} />
+                <PublicOnlyRoute path="/login" component={Login} />
+                <PublicOnlyRoute path="/register" component={Register} />
               </Switch>
             </Grid>
           </Grid>
